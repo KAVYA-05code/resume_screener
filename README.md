@@ -5,15 +5,6 @@ A complete, explainable AI system that screens resumes against job
 descriptions, with a bright, floral-themed UI, login + role selection
 (Student vs. Recruiter), and bias-aware review tools.
 
-## Build history
-- **Stage 1 (30%)** — text input, cleaning, keyword skill matching, basic dashboard.
-- **Stage 2 (70%)** — PDF upload, semantic similarity (Sentence Transformers),
-  combined weighted score, explainable output, job-role recommendations.
-- **Stage 3 (100%, this build)** — login & roles, advanced synonym-aware skill
-  extraction, experience-aware confidence, skill knowledge graph, personalized
-  learning recommendations, bias-aware/blind-review mode, recruiter dashboard,
-  downloadable PDF reports, and a bright floral UI.
-
 ## Folder structure
 ```
 resume_screener/
@@ -55,9 +46,6 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-The first run downloads the `all-MiniLM-L6-v2` sentence-embedding model
-(~80MB) once; it's then cached for the rest of the session.
-
 ## Using the app
 
 1. **Login** — enter your name and choose **Student / Job Seeker** or
@@ -97,24 +85,4 @@ The first run downloads the `all-MiniLM-L6-v2` sentence-embedding model
 - Adjust scoring weights in `modules/scoring.py`.
 - Change colors/floral pattern in `modules/theme.py`.
 
-## Honest scope notes (what's simplified for a mini-project)
-- **Fine-tuning**: uses the pre-trained `all-MiniLM-L6-v2` model as-is.
-  Fine-tuning on a labeled resume–job dataset (e.g. public Hugging Face
-  ATS-scoring datasets) is documented as future work — say so plainly in
-  your review rather than claiming it's done.
-- **Skill knowledge graph**: a small, hand-authored graph — not a learned
-  or weighted graph.
-- **Bias/fairness**: rule-based redaction of a few common identifiers, not
-  a statistical fairness audit. Present it as "bias-aware design," not a
-  compliance guarantee.
-- **Login**: session-only, no persistent user database — sufficient for a
-  live demo, not for production deployment.
 
-## Suggested line for your review
-> "In the first stage, we built a keyword-matching prototype. In the second
-> stage, we added PDF upload, semantic similarity, and explainable scoring.
-> In this final stage, we added advanced synonym-aware skill extraction,
-> experience-aware confidence, a skill knowledge graph, personalized
-> learning recommendations, bias-aware blind-review mode, a multi-candidate
-> recruiter dashboard, and downloadable PDF reports — all wrapped in a
-> role-based, login-gated interface."
